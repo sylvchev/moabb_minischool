@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from moabb.datasets import BNCI2014001
+from moabb.datasets import BNCI2014_001
 from moabb.paradigms import LeftRightImagery
 from numpy import arange, array, concatenate, newaxis, linspace
 from sklearn.pipeline import Pipeline
@@ -10,14 +10,14 @@ from pyriemann.utils.mean import mean_riemann
 
 
 def get_raw_mne_data():
-    dataset = BNCI2014001()
+    dataset = BNCI2014_001()
     sessions = dataset._get_single_subject_data(subject=1)
-    raw_mne = sessions["session_T"]["run_1"]
+    raw_mne = sessions["0train"]["1"]
     return raw_mne
 
 
 def get_trials_data():
-    dataset = BNCI2014001()
+    dataset = BNCI2014_001()
     paradigm = LeftRightImagery()
     X, labels, _ = paradigm.get_data(dataset=dataset, subjects=[1])
     return X, labels
